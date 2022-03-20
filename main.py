@@ -1,4 +1,5 @@
 from margin_perceptron import MarginPerceptron
+from gaussian_kernel import GaussianPerceptron
 
 
 def get_file_data_to_array(file_path):
@@ -45,5 +46,15 @@ if chosen_method == '1':
     predicted_labels = model.predict(testing_data['inputs'])
     accuracy_score = model.accuracy_score(predicted_labels, testing_data['targets'])
     print("The accuracy of Margin Perceptron is : %s" %(accuracy_score))
+elif chosen_method == '2':
+    print("Please input the sigma value")
+    training_data['sigma'] = float(input())
+    print("Please input max iterations")
+    training_data['max_iterations'] = float(input())
+    model = GaussianPerceptron(training_data)
+    model.train()
+    predicted_labels = model.predict(testing_data['inputs'])
+    accuracy_score = model.accuracy_score(predicted_labels, testing_data['targets'])
+    print("The accuracy of Gaussian Kernel Perceptron is : %s" %(accuracy_score))
 else:
     print("Please input 1 or 2 or 3")
