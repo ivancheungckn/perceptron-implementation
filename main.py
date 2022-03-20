@@ -1,5 +1,6 @@
-from margin_perceptron import MarginPerceptron
 from gaussian_kernel import GaussianPerceptron
+from polynomial_kernel import PolynomialPerceptron
+from margin_perceptron import MarginPerceptron
 
 
 def get_file_data_to_array(file_path):
@@ -56,5 +57,15 @@ elif chosen_method == '2':
     predicted_labels = model.predict(testing_data['inputs'])
     accuracy_score = model.accuracy_score(predicted_labels, testing_data['targets'])
     print("The accuracy of Gaussian Kernel Perceptron is : %s" %(accuracy_score))
+elif chosen_method == '3':
+    print("Please input max iterations")
+    training_data['max_iterations'] = int(input())
+    print("Please input the parameter power")
+    training_data['power'] = int(input())
+    model = PolynomialPerceptron(training_data)
+    model.train()
+    predicted_labels = model.predict(testing_data['inputs'])
+    accuracy_score = model.accuracy_score(predicted_labels, testing_data['targets'])
+    print("The accuracy of Polynomial Kernel Perceptron is : %s " %(accuracy_score))
 else:
     print("Please input 1 or 2 or 3")
